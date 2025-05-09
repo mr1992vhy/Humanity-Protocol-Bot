@@ -1,5 +1,4 @@
 from web3 import Web3
-from web3connectpy import connect
 from colorama import init, Fore, Style
 import sys
 import time
@@ -36,7 +35,6 @@ def load_private_keys(file_path):
 def claim_rewards(private_key, web3, contract):
     try:
         account = web3.eth.account.from_key(private_key)
-        conn = connect(private_key)
         sender_address = account.address
         genesis_claimed = contract.functions.userGenesisClaimStatus(sender_address).call()
         current_epoch = contract.functions.currentEpoch().call()
